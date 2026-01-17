@@ -1,0 +1,12 @@
+{
+  "name": "firestone-dashboard",
+  "version": "1.0.0",
+  "description": "Dashboard de productividad",
+  "main": "daily_script.js",
+  "scripts": {
+    "start": "node daily_script.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^11.11.0"
+  }
+}
