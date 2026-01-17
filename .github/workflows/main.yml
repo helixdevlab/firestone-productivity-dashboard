@@ -1,0 +1,30 @@
+name: Firestone Daily Data Generator
+
+on:
+  schedule:
+    # Se ejecuta de Lunes a Viernes a las 22:00 UTC
+    - cron: '0 22 * * 1-5'
+  # Botón para ejecutar manual
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Descargar repositorio
+      uses: actions/checkout@v3
+
+    - name: Instalar Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Instalar dependencias
+      run: npm install
+
+    - name: Ejecutar script diario
+      env:
+        # Aquí usa la llave que guardaste en el Paso 2
+        FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      run: node daily_script.js
