@@ -36,12 +36,8 @@ const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) +
 async function generateDailyData() {
   const today = new Date();
   
-  // Evitar ejecución Sábados (6) y Domingos (0) por si el cron falla
-  const day = today.getDay();
-  if (day === 0 || day === 6) {
-      console.log("Es fin de semana. No se generan datos.");
-      return;
-  }
+  // BORRÉ EL BLOQUEO DE FIN DE SEMANA
+  // Ahora trabajará aunque sea sábado o domingo
 
   const dateString = today.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
   console.log(`Generando datos para: ${dateString}`);
@@ -95,4 +91,5 @@ async function generateDailyData() {
 generateDailyData().catch(error => {
     console.error(error);
     process.exit(1); // Forzar error para que GitHub notifique
+
 });
